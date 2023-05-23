@@ -17,6 +17,11 @@
 
 # TODO html - home and menu
 
+# TODO задача на 23,05 - сделать темплейты с отображением
+# TODO сделать вьюхи
+# TODO CRUD
+
+
 
 
 

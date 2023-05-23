@@ -10,10 +10,14 @@ def test(request):
                         # f"requst = {request}"
                         )
 
-def get_question(request):
+from .models import Question
 
+def get_question(request):
+    # q = Question.objects.get(id=1)
+    q = Question.objects.order_by("?").first()
     con = {
-        "title": "question title"
+        "title": "question title",
+        "q": q,
     }
     return render(request, "know_me/question.html", con)
 
