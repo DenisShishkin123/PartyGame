@@ -22,3 +22,6 @@ urlpatterns = [
     path("", test, name="test"),
     path("q/", get_question, name="question"),
 ]
+
+
+
