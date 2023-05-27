@@ -22,12 +22,23 @@ class Cls:
 # print("*")
 
 
+# venv/Scripts/activate.bat
+# venv\Scripts\activate.bat
 
 
 
+def longest(a1, a2):
+
+    return "".join(sorted(list(set([x for x in (a1+a2)]))))
 
 
+a = "xyaabbbccccdefww"
+b = "xxxxyyyyabklmopq"
+p = longest(a, b)
 
+print(p)
+
+# print([x for x in (a1+a2)])
 
 
 

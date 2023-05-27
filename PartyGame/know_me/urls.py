@@ -21,6 +21,9 @@ from .views import *
 urlpatterns = [
     path("", test, name="test"),
     path("q/", get_question, name="question"),
+    path("q_add", create_question, name="create_question"),
+    path("q_list", QuestionList.as_view(), name="Question_List"),
+
 ]
 
 

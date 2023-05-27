@@ -1,6 +1,7 @@
 .venv/*
 .idea/*
-
+test.2.py
+venv/*
 
 
 
