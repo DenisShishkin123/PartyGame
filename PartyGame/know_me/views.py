@@ -6,6 +6,63 @@ from django.views.generic import ListView
 from .models import Question
 from .forms import AddQuestionForm, AddQuestionListForm
 
+
+'''
+'''
+from .models import Tag, Question
+from .forms import Tag_Question_Form
+
+
+def form(request, error=None):
+    form = Tag_Question_Form()
+    con = {
+        "form": form,
+        "error": error,
+    }
+    return render(request, "know_me/add_test.html", con)
+
+
+def add_test(request):
+    if request.method == "POST":
+        print(f"******** request.POST - {request.POST}")
+        # print(f"******** request.POST['name_tag'] - {request.POST['name_tag']}")
+        # print(f"******** request.POST['name_tag'] - {type(request.POST['name_tag'])}")
+        try:
+            try:
+                tag = Tag.objects.get(name_tag=request.POST["name_tag"])
+            except Tag.DoesNotExist:
+                tag = Tag.objects.create(name_tag=request.POST["name_tag"])
+
+            Question.objects.create(tag=tag, question=request.POST["question"])
+        except Exception:
+            return form(request, error="УПС")
+
+        return form(request, error="сохранилось")
+
+    else:
+        return form(request)
+
+    # tag_id = tag.id
+    # tag = Tag(name_tag=request.POST["name_tag"][])
+
+    # if tag.is_valid():
+    #     tag.save()
+    #
+    #     question = Question(tag=tag , question=request.POST["question"][])
+    #     if question.is_valid():
+    #         question.save()
+
+
+
+
+
+
+
+
+'''
+'''
+
+
 def p(*args):
     print(f"***********", *args, sep=" ")
 

@@ -1,6 +1,23 @@
 from django import forms
 
-from .models import Question
+from .models import Question, Tag
+
+
+class Tag_Question_Form(forms.Form):
+    name_tag = forms.CharField(max_length=15, label="tag")
+    question = forms.CharField(max_length=300, label="text")
+
+
+
+# class Tag(models.Model):
+#     name_tag = models.CharField("тег", max_length=15)
+#
+# class Question(models.Model):
+#     question = models.CharField(max_length=300, verbose_name="вопрос") #, name="вопрос"
+#     tag = models.ForeignKey("Tag", on_delete=models.PROTECT)
+
+
+
 
 class AddQuestionForm(forms.ModelForm):
     class Meta:
