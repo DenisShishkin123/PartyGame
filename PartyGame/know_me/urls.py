@@ -19,13 +19,16 @@ from django.urls import path
 from .views import *
 
 urlpatterns = [
-    path("home", test, name="home"),
     path("", test, name="test"),
-    path("q/", get_question, name="question"),
+    path("home", test, name="home"),
+
+    path("q/", get_question, name="question"), # get random
     path("q_add", create_question, name="create_question"),
     path("q_add_list", AddQuestionList.as_view(), name="AddQuestionList"),
     path("q_list", QuestionList.as_view(), name="Question_List"),
 
+
+    # test  для студента
     path("add_test", add_test, name="add_test")
 ]
 
