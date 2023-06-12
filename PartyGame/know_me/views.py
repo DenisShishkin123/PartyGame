@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import ListView
 
@@ -13,12 +14,11 @@ def p(*args):
     print(f"***********", *args, sep=" ")
 
 
-
 def test(HttpRequest):
-    print("*"*50)
-    print("request:", HttpRequest.GET)
-    print("body:", HttpRequest.body)
-    print("read:", HttpRequest.read())
+    # print("*"*50)
+    # print("request:", HttpRequest.GET)
+    # print("body:", HttpRequest.body)
+    # print("read:", HttpRequest.read())
     # print("request:", HttpRequest.POST)
     return HttpResponse(f"<h1>Страница в разработке</h1>"
                         f"<a href='https://django.fun/ru/docs/django/4.1/ref/request-response/'>  подробнее про request </a><br>"
@@ -34,11 +34,32 @@ def test(HttpRequest):
                         )
 
 
-
 def get_question(request):
     # q = Question.objects.get(id=1)
     ''' стандарт '''
-    # q = Question.objects.order_by("?").first()
+    q = Question.objects.order_by("?").first()
+    con = {
+        "title": "question title",
+        "q": q,
+    }
+    return render(request, "know_me/get_question.html", con)
+
+
+
+def get_question_tag(request, tag):
+    p(tag)
+    q = Question.objects.filter(tag__name_tag=tag).order_by("?").first()
+    con = {
+        "title": "question title",
+        "q": q,
+    }
+    return render(request, "know_me/get_question.html", con)
+
+"""
+def get_question(request):
+    # q = Question.objects.get(id=1)
+    ''' стандарт '''
+    q = Question.objects.order_by("?").first()
 
     # t = Tag.objects.get(name_tag="tag1")
     # q = Question.objects.filter(tag=t).order_by("?").first()
@@ -72,20 +93,20 @@ def get_question(request):
         "title": "question title",
         "q": q,
     }
-    return render(request, "know_me/question.html", con)
-
+    return render(request, "know_me/get_question.html", con)
+"""
 
 def create_question(request):
-    p("request -", request)
+    # p("request -", request)
     if request.method == "POST":
-        p("POST - ", request.POST)
+        # p("POST - ", request.POST)
         form = AddQuestionForm(request.POST)
         if form.is_valid():
-            p(" form.cleaned_data - ", form.cleaned_data)
+            # p(" form.cleaned_data - ", form.cleaned_data)
             form.save()
         return redirect("create_question")
     if request.method == "GET":
-        p("GET - ", request.GET)
+        # p("GET - ", request.GET)
         form = AddQuestionForm()
         con = {
             "title": "добавление вопроса",
@@ -93,6 +114,85 @@ def create_question(request):
         }
         # return render(request, "know_me/add_question.html")
         return render(request, "know_me/add_question.html", con)
+
+
+
+
+from django.views import View
+
+
+
+class CreateQuestion(View):
+    form_class = AddQuestionForm
+    templates = "know_me/create_Question.html"
+    # initial = {'key': 'value'}
+    # initial = {'question': 'вашь вопрос'}
+
+    def get(self, request):
+        # form = self.form_class(initial=self.initial)
+        form = self.form_class
+        return render(request, self.templates, {"form": form})
+
+    def post(self, request):
+        form = self.form_class(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("create_question_class")
+        return render(request, self.templates, {"form": form, "error": "error"})
+        # return HttpResponse("error")
+
+
+
+from django.views.generic import ListView
+
+class QuestionList(ListView):
+    model = Question
+    template_name = "know_me/question_list.html"
+    # template_name = "know_me/Question_list_.html"
+    context_object_name = "questions"
+    extra_context = {"title": "заголовок"}
+
+    def get_queryset(self):
+        return Question.objects.filter(tag__name_tag="t1")
+
+
+
+
+
+def deteil_question(request, id):
+    # p(id)
+    q = Question.objects.get(pk=id)
+    return render(request, "know_me/Question.html", {"q": q})
+
+
+
+from django.views.generic import DetailView
+
+class QuestionDetail(DetailView):
+    model = Question
+    template_name = "know_me/Question.html"
+    context_object_name = "q"
+    extra_context = {"title": f"вопрос      "}
+
+
+from django.views.generic import CreateView
+# from django import revers_lazy
+
+
+class QuestionCreate(CreateView):
+    form_class = AddQuestionForm
+    template_name = "know_me/create_Question.html"
+    # template_name = "know_me/QuestionAdd.html"
+    success_url = reverse_lazy("home")
+
+
+
+
+
+
+
+
+
 
 
 def parser(data_in):
@@ -151,17 +251,6 @@ class AddQuestionList(View):
 
 
 
-
-
-
-class QuestionList(ListView):
-    model = Question
-    template_name = "know_me/Question_list_.html"
-    context_object_name = "questions"
-    extra_context = {"title":"заголовок"}
-
-    def get_queryset(self):
-        return Question.objects.filter(question="555")
 
 
 

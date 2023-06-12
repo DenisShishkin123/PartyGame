@@ -17,6 +17,7 @@ class Question(models.Model):
     # tag = models.CharField(max_length=100, blank=True, verbose_name="tag")
     tag = models.ForeignKey("Tag", verbose_name="tag", blank=True, on_delete=models.PROTECT
                             , related_name='+',)
+                            # null = True,
     tags = models.ManyToManyField("Tag", verbose_name="tags", blank=True)
 
 

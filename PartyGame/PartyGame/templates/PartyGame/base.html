@@ -1,0 +1,21 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%} PartyGame {% endblock title %}</title>
+    <link type="text/css" rel="stylesheet" href="{% static 'PartyGame/css/styles.css' %}"  />
+</head>
+<body>
+
+<h1>PartyGame</h1>
+
+{% include "PartyGame/menu.html"%}
+
+{% block content %}
+{% endblock content%}
+
+</body>
+</html>
+

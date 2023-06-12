@@ -16,20 +16,45 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import *
+# from .views import *
+from .views import test, get_question, get_question_tag
+from .views_class import *
 
 urlpatterns = [
     path("", test, name="test"),
-    path("home", test, name="home"),
+    path("home/", test, name="home"),
 
-    path("q/", get_question, name="question"), # get random
-    path("q_add", create_question, name="create_question"),
-    path("q_add_list", AddQuestionList.as_view(), name="AddQuestionList"),
-    path("q_list", QuestionList.as_view(), name="Question_List"),
+    path("QuestionList/", QuestionList.as_view(), name="QuestionList"),
+    path("QuestionCreate/", QuestionCreate.as_view(), name="QuestionCreate"),
+    path("QuestionDetail/<int:pk>", QuestionDetail.as_view(), name="QuestionDetail"),
+    path("QuestionUpdate/<int:pk>", QuestionUpdate.as_view(), name="QuestionUpdate"),
+    path("QuestionDelete/<int:pk>", QuestionDelete.as_view(), name="QuestionDelete"),
 
 
-    # test  для студента
-    path("add_test", add_test, name="add_test")
+    # path("q/", get_question, name="get_question"), # get random
+    path("q/<tag>/", get_question_tag, name="get_question_tag"), # get random
+
+
+
+    #
+    # path("q_add/", create_question, name="create_question"), # создать
+    # path("q/", get_question, name="question"), # get random
+    # path("q_detail/<id>", deteil_question, name="q_detail"),
+    #
+    # # ClassView
+    # path("q_create_/", CreateQuestion.as_view(), name="CreateQuestion"),
+    #
+    # path("q_create_c", QuestionCreate.as_view(), name="QuestionCreate"),
+    # path("q_list_c/", QuestionList.as_view(), name="QuestionList"),
+    # path("q_detail_c/<pk>", QuestionDetail.as_view(), name="QuestionDetail"),
+    #
+    #
+    #
+    # path("q_add_list/", AddQuestionList.as_view(), name="AddQuestionList"),
+    #
+    #
+    # # test  для студента
+    # path("add_test/", add_test, name="add_test")
 ]
 
 
