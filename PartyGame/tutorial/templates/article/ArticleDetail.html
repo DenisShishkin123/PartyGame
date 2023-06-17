@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{title}}</title>
+</head>
+<body>
+
+<!--<p>{{article}}</p>-->
+<p>{{article.pk}}</p>
+<p>{{article.slug}}</p>
+<p>{{article.title}}</p>
+<p>{{article.text}}</p>
+
+<a href="{% url 'article_update' article.slug %}">редактировать</a>
+<a href="{% url 'article_delete' article.slug %}">удалить</a>
+
+
+</body>
+</html>

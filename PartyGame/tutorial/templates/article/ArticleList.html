@@ -1,0 +1,32 @@
+{% extends "article/base.html"%}
+<!--expand-->
+<!--extend-->
+<!--include-->
+
+{% block content %}
+
+{% for article in articles %}
+<!--    {{article.as_p}}-->
+<!--    <p>{{article}}</p>-->
+<p><a href="{{article.get_absolute_url}}">{{article}}</a></p>
+{% endfor %}
+
+{% endblock content %}
+
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>{{title}}</title>-->
+<!--</head>-->
+<!--<body>-->
+
+<!--{% for article in articles %}-->
+<!--&lt;!&ndash;    {{article.as_p}}&ndash;&gt;-->
+<!--&lt;!&ndash;    <p>{{article}}</p>&ndash;&gt;-->
+<!--<p><a href="{{article.get_absolute_url}}">{{article}}</a></p>-->
+<!--{% endfor %}-->
+
+<!--</body>-->
+<!--</html>-->

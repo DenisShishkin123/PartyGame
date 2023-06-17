@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{%block title%}Tutorial{%endblock title%}</title>
+</head>
+<body>
+
+
+<h1 id="title" >Tutorial</h1>
+
+{% include "article/menu.html"%}
+
+<br>
+
+{% block content %}
+content
+{% endblock content%}
+
+
+</body>
+</html>

@@ -37,8 +37,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    "know_me",
     "PartyGame",
+    "know_me",
+    "tutorial",
     # 'know_me.app.KnowMeConfig',
 ]
 
