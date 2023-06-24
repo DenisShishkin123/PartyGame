@@ -1,3 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, HttpResponse
 
-# Create your views here.
+
+
+def test(request):
+    return render(request, "monkey/test.html", {"title": "заголовок",
+                                                "content": "контент"})
+
+

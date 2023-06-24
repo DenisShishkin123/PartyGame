@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     "PartyGame",
     "know_me",
     "tutorial",
+    "monkey",
     # 'know_me.app.KnowMeConfig',
 ]
 
