@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+
+<p><a href="{% url 'create' %}">create</a></p>
+
+{% for c in cards %}
+
+<p><a href="{% url 'card' c.pk %}">{{c}}</a></p>
+
+
+{% endfor %}
+
+
+</body>
+</html>

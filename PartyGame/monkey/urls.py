@@ -25,5 +25,10 @@ from .views import *
 urlpatterns = [
     path("test", test, name="test"),
 
+    path("list", CardList.as_view(), name="CardList"),
+    path("card/<int:pk>", CardDetail.as_view(), name="card"),
+    path("card/delete/<int:pk>", CardDelete.as_view(), name="delete"),
+    path("card/update/<int:pk>", CardUpdate.as_view(), name="update"),
+    path("card/create", CardCreate.as_view(), name="create"),
 
 ]
