@@ -1,0 +1,20 @@
+{% extends "monkey/base.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+{% block content %}
+{{c}}
+<!--<button><a href="{% url 'random' %}"> дальше </a> </button>-->
+
+<!--<button onclick="document.location='{% url 'random' %}'">дальше</button>-->
+
+<form action="{% url 'random' %}">
+    <button> дальше </button>
+</form>
+
+
+
+{% endblock %}
+

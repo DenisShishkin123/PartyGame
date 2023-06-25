@@ -7,6 +7,15 @@ def test(request):
                                                 "content": "контент"})
 
 
+def get_random(request):
+    # card = Card.objects.get(pk=1)
+    card = Card.objects.order_by("?").first()
+    con = {
+        "title": "заголовок",
+        "c": card
+    }
+    return render(request, "monkey/action.html", con)
+
 
 
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
@@ -50,6 +59,8 @@ class CardDelete(DeleteView):
     context_object_name = "c"
     extra_context = {"title": "заголовок"}
     success_url = reverse_lazy("test")
+
+
 
 
 
