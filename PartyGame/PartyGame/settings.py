@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     "know_me",
     "tutorial",
     # 'know_me.app.KnowMeConfig',
+    "user",
 ]
 
 
