@@ -1,0 +1,24 @@
+{% extends "monkey/base.html" %}
+
+{% block title %}
+{{title}}
+{% endblock %}
+
+
+{% block content %}
+
+<p>{{ number_players }} / {{ quantity_of_players }}</p>
+<p>{{ card }}</p>
+<p>{{ end }}</p>
+
+
+
+<form action="{% url 'play' %}">
+    {% if number_players == 1 %}
+        <button>следующий раунд</button>
+    {% else %}
+        <button>следующий</button>
+    {% endif %}
+</form>
+
+{% endblock %}

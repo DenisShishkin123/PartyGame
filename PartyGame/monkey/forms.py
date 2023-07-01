@@ -10,5 +10,8 @@ class CardForm(forms.ModelForm):
         
 
 
-
-
+class StartForm(forms.Form):
+    # Игра
+    # число игроков
+    quantity_of_players = forms.IntegerField()
+    # номер комноты / число для рандома

@@ -23,10 +23,20 @@ from django.urls import path, include
 from .views import *
 
 urlpatterns = [
-    path("test", test, name="test"),
+    # test
+    path("s", session_start, name="session"),
+    path("test", test, name="m_test"),
 
+    # play
+    path("start/", start, name="start"),
+    path("play/", play, name="play"),
+
+
+
+    # get random
     path("", get_random, name="random"),
 
+    # CRUD
     path("list", CardList.as_view(), name="CardList"),
     path("card/<int:pk>", CardDetail.as_view(), name="card"),
     path("card/delete/<int:pk>", CardDelete.as_view(), name="delete"),
